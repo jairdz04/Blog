@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Validator;
+use Auth;
+//use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\http\Request;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Routing\Route;
+//use Middleware\authenticate;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -21,7 +27,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    //use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
      * Create a new authentication controller instance.
@@ -33,19 +39,28 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    /* protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:60',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:7',
         ]);
+    }*/
+
+   public function authenticate(Request $request){
+        $credentials = $request->only('email', 'password');
+        try{
+            if (! $token = JWTAuth::attempt($credentials)){
+             //dd($credentials);
+          return response()->json(['error'=>'User credentials are not correct'], 401);
+            }
+        }catch(JWTException $ex){
+            return response()->json(['error'=>'Somenthing went wrong!'], 500);
+        }
+
+        return response()->json(compact('token'));
+
     }
 
     /**

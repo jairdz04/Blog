@@ -25,7 +25,7 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
- <link rel="stylesheet" href="/bootstrap/css/costum.css">
+
 
 
 
@@ -87,10 +87,14 @@
 <!-- Angular libs -->
 
 <script src="/bower_components/angular/angular.min.js"> </script>
-<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"> </script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="/js/app/services/alumnoService.js"></script>
 <script src="/js/app/app.js"></script>
 
 
+
+ 
 
 </body>
 </html>

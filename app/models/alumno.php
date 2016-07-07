@@ -21,16 +21,16 @@ class alumno extends Model {
             $table->string('nombre');
             $table->string('apellido');
             $table->string('identificación');
-            $table->string('fechaNacimiento');
+            $table->string('fecha_nacimiento');
             $table->string('grado');
             $table->string('curso');
-            $table->string('DirectorGrupo');
-            $table->string('NúmeroContacto');
+            $table->string('director_grupo');
+            $table->string('numero_contacto');
             $table->timestamps();
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'apellido', 'identificación','fechaNacimiento', 'grado' , 'curso', 'DirectorGrupo', 'NúmeroContacto'];
+    protected $fillable = ['nombre', 'apellido', 'identificacion','fecha_nacimiento', 'grado' , 'curso', 'director_grupo', 'numero_contacto'];
 
     /**
      * The attributes excluded from the model's JSON form.

@@ -21,7 +21,7 @@ class CreateRegistroTable extends Migration
             $table->string('sede');
             $table->string('email')->unique();
             $table->string('telefono')->unique();
-            $table->string('fechaNacimiento');
+            $table->string('fecha_nacimiento');
             $table->timestamps();
 
         });

@@ -14,13 +14,12 @@ class CreateHistoriaTable extends Migration
     {
         Schema::create('historia', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('ComentarioParcial');
-            $table->string('fechaComentarioParcial');
-            $table->text('comentarioFinal');
-            $table->string('fechaComentarioFinal');
-            $table->integer('idRegistro');
-            $table->integer('idAlumno');
+            $table->text('comentario_parcial');
+            $table->string('fecha_comentario_parcial');
+            $table->text('comentario_final');
+            $table->string('fecha_comentario_final');
             $table->timestamps();
+           
         });
     }
 

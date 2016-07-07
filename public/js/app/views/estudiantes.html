@@ -1,0 +1,120 @@
+
+
+  <div class= "col-md-12">
+<section class="content-header">
+          <h1>
+            Gestión de alumnos
+            <hr>
+          </h1>
+        </section>
+
+<br>
+
+<div class="col-sm-6"></div>
+
+        <div class="input-group col-sm-6  ">
+          <input type="text" name="q" class="form-control" placeholder="Buscar..." ng-model="search">
+              <span class="input-group-btn">
+                <button  name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+               <button class="btn btn-success pull-right"  ng-click="open('lg')">Añadir Alumno</button>
+        </div>
+     
+
+
+
+
+<br>
+<br>
+<br>
+
+
+
+<div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Alumnos registrados</h3>
+
+         
+        </div>
+        <!-- /.box-header -->
+        <div class="container table-responsive"  style="padding-top: 1em;">
+                  <table class="table table-hover">
+                          <thead>
+                                <tr>
+                                  <th>Nombres</th>
+                                  <th>Apellidos</th>
+                                  <th>Identificación</th>
+                                  <th>Grado</th>
+                                  <th>Curso</th>
+                                  <th>Director de grupo</th>
+                                  <th></th>
+                                 
+                                  
+                                </tr>
+                          </thead>
+                          <tbody>
+                                <tr ng-repeat="alumno in alumnos | filter:search">
+                                  <td>{{alumno.nombre}}</td>
+                                  <td>{{alumno.apellido}}</td>
+                                  <td>{{alumno.identificacion}}</td>
+                                  <td>{{alumno.grado}}</td>
+                                  <td>{{alumno.curso}}</td>
+                                  <td>{{alumno.director_grupo}}</td>
+                                  <td>
+                                      <button type="button" class="btn btn-info  fa fa-eye " ui-sref="home.detalles"></button> 
+                                      <button type="button" class="btn btn-warning  fa fa-gears"></button> 
+                                      <button type="button" class="btn btn-danger  fa fa-close " ng-click="remove(alumno.id)"></button>
+                                   </td>
+                                
+                                   
+                                </tr>
+                               
+                            
+                          </tbody>
+                  </table>
+</div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+        <uib-pagination class="pull-right" total-items="totalItems" items-per-page="5" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+        </div>
+      </div>
+<br>
+     </div>
+
+     <script type="text/ng-template" id="add-alumno.html" >
+        <div class="modal-header">
+
+            <h3 class="modal-title">Agregar Alumno</h3>
+        </div>
+           <div class="modal-body">
+        <label>Nombres</label> <input type="text"  class="form-control" ng-model="alumno.nombre" />
+        <label>Apellidos</label>  <input type="text"   class="form-control" ng-model="alumno.apellido" />
+        <label>Identificación</label>  <input type="number"  class="form-control" ng-model="alumno.identificacion" />
+        <label>Fecha de nacimiento</label>  <input type="date"  class="form-control" ng-model="alumno.fecha_nacimiento" />
+        <label> grado</label>  <input type="text"  class="form-control" ng-model="alumno.grado" />
+        <label>Curso</label>  <input type="text"  class="form-control" ng-model="alumno.curso" />
+        <label> Director de grupo</label>  <input type="text"  class="form-control" ng-model="alumno.director_grupo" />
+        <label> Número de contacto</label>  <input type="number"  class="form-control" ng-model="alumno.numero_contacto" />
+      
+      </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="msg.html">
+      
+      <div class="modal-header"></div>
+        <div class="modal-body">
+          <p>Creado Correctamente</p>
+        </div>
+             </script>
+
+
+
+
+
+
+

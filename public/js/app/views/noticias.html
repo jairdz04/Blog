@@ -1,5 +1,22 @@
-<h1>{{"Posts"}}</h1>
-<ul ng-repeat="post in posts">
-  <h3><strong>{{post.nombre}}</strong></h3>
-  <p>{{post.curso}}</p>
-</ul>
+
+<div class= "col-md-12">
+	<section class="content-header">
+	      <h1>
+	        Información
+	        <hr>
+	      </h1>
+	    </section>
+
+	<div class="panel panel-info" ng-repeat="post in posts">
+		    <div class="panel-heading">
+		       <h3 class="panel-title">El usuario <strong>{{post.nombre}} </strong>ha creado un elemento.</h3>
+		    </div>
+		    <div class="panel-body">
+					 {{post.curso}}<br>
+					 {{post.grado}}<br>
+				     {{post.curso}}
+				  <button class="btn btn-primary pull-right" type="button"> Ver...</button>
+		    </div>
+	  </div>
+
+ </div>

@@ -12,16 +12,13 @@ use Illuminate\Routing\Route;
 class noticiasController extends Controller
 {
     
-    public function __construct(){
-
-        $this->middleware('cors');
-    }
+   
     public function __construct(){
     $this->beforeFilter('@find', ['only'=> ['show', 'update', 'destroy']]);
     }
 
     public function find(Route $route){
-        $this->noticia = noticia::find($route->getParameter('noticias'));
+        $this->noticia = noticia::find($route->getParameter('noticia'));
        // dd($route->getParameter('alumno'));
      }
     /**
@@ -88,8 +85,8 @@ class noticiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->historia->fill($request->all());
-        $this->historia->save();
+        $this->noticia->fill($request->all());
+        $this->noticia->save();
         return response()->json(["mensaje"=>"actualizado correctamente"]);
     }
 
@@ -101,7 +98,7 @@ class noticiasController extends Controller
      */
     public function destroy($id)
     {
-        $this->historia->delete();
+        $this->noticia->delete();
     return response()->json(["mensaje"=>"Eliminado correctamente"]);
     }
 }

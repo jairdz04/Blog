@@ -16,18 +16,16 @@ class historia extends Model {
 
     /**
      * The attributes that are mass assignable.
-      $table->increments('id');
-            $table->text('ComentarioParcial');
-            $table->string('fechaComentarioParcial');
-            $table->text('comentarioFinal');
-            $table->string('fechaComentarioFinal');
-            $table->integer('idRegistro');
-            $table->integer('idAlumno');
+       $table->increments('id');
+            $table->text('comentario_parcial');
+            $table->string('fecha_comentario_parcial');
+            $table->text('comentario_final');
+            $table->string('fecha_comentario_final');
             $table->timestamps();
      *
      * @var array
      */
-    protected $fillable = ['ComentarioParcial', 'fechaComentarioParcial', 'comentarioFinal','fechaComentarioFinal', 'idRegistro' , 'idAlumno'];
+    protected $fillable = ['comentario_parcial', 'fecha_comentario_parcial', 'comentario_final','fecha_comentario_final'];
 
     /**
      * The attributes excluded from the model's JSON form.

@@ -6,29 +6,32 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\models\registro;
 use Illuminate\Routing\Route;
+use App\User;
 
-
-class registroController extends Controller
+class UserController extends Controller
 {
-   
-    public function __construct(){
-    $this->beforeFilter('@find', ['only'=> ['show', 'update', 'destroy']]);
-    }
-
-    public function find(Route $route){
-        $this->registro = registro::find($route->getParameter('registro'));
-     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+	public function __construct(){
+		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+	}
+
+	public function find(Route $route)
+	{
+		$this->usuario=User::find($route->getParameter('usuario'));
+		//dd($this->indicador);
+		//$users = DB::table('users')->skip(10)->take(5)->get(); Obtener elementos desde hasta (skip:desde,take:hasta)
+	}
     public function index()
     {
-        $registro = registro::all();
-        return response()-> json($registro->toArray());
+        $usuario = User::all();
+		return response()->json($usuario);
     }
 
     /**
@@ -38,7 +41,8 @@ class registroController extends Controller
      */
     public function create()
     {
-        
+
+
     }
 
     /**
@@ -49,8 +53,13 @@ class registroController extends Controller
      */
     public function store(Request $request)
     {
-         registro::create($request->all());
-        return response()->json(["mensaje"=>"creada correctamente"]);
+
+        $email=$request->input('email');
+        $password=$request->input('password');
+        $username=$request->input('username');
+
+        User::create(['email' => $email, 'password' => bcrypt($password), 'username' => $username]);
+		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
     /**
@@ -61,7 +70,7 @@ class registroController extends Controller
      */
     public function show($id)
     {
-         return response()->json($this->registro);
+        return response()->json($this->usuario);
     }
 
     /**
@@ -72,7 +81,7 @@ class registroController extends Controller
      */
     public function edit($id)
     {
-      
+        //
     }
 
     /**
@@ -84,9 +93,9 @@ class registroController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->registro->fill($request->all());
-        $this->registro->save();
-        return response()->json(["mensaje"=>"actualizado correctamente"]);
+        $this->usuario->fill($request->all());
+		$this->usuario->save();
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**
@@ -97,7 +106,7 @@ class registroController extends Controller
      */
     public function destroy($id)
     {
-         $this->registro->delete();
-    return response()->json(["mensaje"=>"Eliminado correctamente"]);
+        $this->usuario->delete();
     }
+
 }

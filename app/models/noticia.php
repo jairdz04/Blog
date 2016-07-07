@@ -12,23 +12,21 @@ class noticia extends Model {
      *
      * @var string
      */
-    protected $table = '';
+    protected $table = 'noticia';
 
     /**
      * The attributes that are mass assignable.
       $table->increments('id');
-            $table->string('nombres');
-            $table->string('apellidos');
-            $table->string('identificacion')->unique();
-            $table->string('sede');
-            $table->string('email')->unique();
-            $table->string('telefono')->unique();
-            $table->string('fechaNacimiento');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('telefono');
+            $table->string('email');
+            $table->string('mensaje');
             $table->timestamps();
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['nombre', 'apellido', 'email', 'telefono', 'mensaje'];
 
     /**
      * The attributes excluded from the model's JSON form.

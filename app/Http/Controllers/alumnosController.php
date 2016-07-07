@@ -12,14 +12,11 @@ use Illuminate\Routing\Route;
 class alumnosController extends Controller
 {
 
+    
+
     public function __construct(){
-
-        $this->middleware('cors');
+    $this->beforeFilter('@find', ['only'=> ['show', 'update', 'destroy']]);
     }
-
-   // public function __construct(){
-    //$this->beforeFilter('@find', ['only'=> ['show', 'update', 'destroy']]);
-    //}
 
     public function find(Route $route){
         $this->alumno = alumno::find($route->getParameter('alumno'));
@@ -104,5 +101,11 @@ class alumnosController extends Controller
     {
     $this->alumno->delete();
     return response()->json(["mensaje"=>"Eliminado correctamente"]);
+    }
+
+    public function getAlumnos($cantidad){
+
+        $alumnos = alumno::skip($cantidad)->take(5)->get();
+        return response()->json($alumnos);
     }
 }

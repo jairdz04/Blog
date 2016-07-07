@@ -23,6 +23,27 @@ Route::group(['prefix' => 'api'],function(){
 Route::resource('alumno','alumnosController');
 Route::resource('historias','historiaController');
 Route::resource('registro','registroController');
-Route::resource('noticias', 'noticiasController');
+Route::resource('noticia', 'noticiasController');
+Route::get('alumno/all/{cantidad}', 'alumnosController@getAlumnos');
+Route::post('authenticate', 'Auth\AuthController@authenticate');
+Route::resource('usuario', 'UserController');
+
+
+
+/*Route::get('login', [
+      'uses' => 'Auth\AuthController@getLogin',
+      'as' => 'login'
+]);
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('logout', [
+  'uses' => 'Auth\AuthController@getLogout',
+  'as' => 'logout'
+]);
+Route::get('principal', [ 'middleware' => 'auth',
+        'uses' => 'HomeController@principal',
+        'as' => 'principal'
+    ]
+);*/
+
 
 });

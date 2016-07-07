@@ -11,10 +11,7 @@ use Illuminate\Routing\Route;
 
 class historiaController extends Controller
 {
-     public function __construct(){
-
-        $this->middleware('cors');
-    }
+     
     
     public function __construct(){
     $this->beforeFilter('@find', ['only'=> ['show', 'update', 'destroy']]);
